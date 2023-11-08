@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "dd0c847d-3b3b-4253-8cc2-1abd344d0ba8",
+		"name": "hasin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "store",
+			"item": [
+				{
+					"name": "upload file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tags",
+									"value": "tag1,tag2,tag3",
+									"type": "default"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{StoreBaseUrl}}/api/upload",
+							"host": [
+								"{{StoreBaseUrl}}"
+							],
+							"path": [
+								"api",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get files with tags",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{StoreBaseUrl}}/api/download/:mode/:tags",
+							"host": [
+								"{{StoreBaseUrl}}"
+							],
+							"path": [
+								"api",
+								"download",
+								":mode",
+								":tags"
+							],
+							"variable": [
+								{
+									"key": "mode",
+									"value": "tags"
+								},
+								{
+									"key": "tags",
+									"value": "tag5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "retrieve",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"username\",\n    \"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{RetrieveBaseUrl}}/user/login",
+							"host": [
+								"{{RetrieveBaseUrl}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"username\",\n    \"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{RetrieveBaseUrl}}/user/register",
+							"host": [
+								"{{RetrieveBaseUrl}}"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tags",
+									"value": "tag1,tag2,tag3",
+									"type": "default"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{RetrieveBaseUrl}}/api/upload",
+							"host": [
+								"{{RetrieveBaseUrl}}"
+							],
+							"path": [
+								"api",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get files with tags",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{RetrieveBaseUrl}}/api/download/:mode/:tags",
+							"host": [
+								"{{RetrieveBaseUrl}}"
+							],
+							"path": [
+								"api",
+								"download",
+								":mode",
+								":tags"
+							],
+							"variable": [
+								{
+									"key": "mode",
+									"value": "tags"
+								},
+								{
+									"key": "tags",
+									"value": "tag5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ping",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{RetrieveBaseUrl}}/api/ping",
+							"host": [
+								"{{RetrieveBaseUrl}}"
+							],
+							"path": [
+								"api",
+								"ping"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "StoreBaseUrl",
+			"value": "localhost:8009",
+			"type": "default"
+		},
+		{
+			"key": "RetrieveBaseUrl",
+			"value": "localhost:8010",
+			"type": "default"
+		},
+		{
+			"key": "jwtToken",
+			"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VyYW1lIjoidXNlcm5hbWUiLCJleHAiOjE2OTk1MTEyMDB9.i1g4oOX3C9Npn5UHSAms4PlNCRFdlWUoatSAwesOilQEaR50Ssq0qz4eprT2nMsrX26r2Ia2uUQVJwpu99kSQw",
+			"type": "default"
+		}
+	]
+}

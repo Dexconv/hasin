@@ -1,0 +1,48 @@
+version: '2'
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    volumes:
+       - ./postgres/data:/data/postgres
+       - ./postgres/init/10_create_db.sql:/docker-entrypoint-initdb.d/10_create_db.sql
+    ports:
+      - "8008:5432"
+    networks:
+      - hasin
+    restart: unless-stopped
+
+  store:
+    build:
+      context: ./store
+      dockerfile: ./Dockerfile
+    depends_on:
+      - postgres
+    volumes:
+      - ./store/files:/app/files
+      - ./store/config/file:/app/config/file
+    ports:
+      - "8009:8080"
+    networks:
+      - hasin
+
+  retrieve:
+    build:
+      context: ./retrieve
+      dockerfile: ./Dockerfile
+    depends_on:
+      - postgres
+    volumes:
+      - ./retrieve/config/file:/app/config/file
+    ports:
+      - "8010:8080"
+    networks:
+      - hasin
+
+networks:
+  hasin:
+    driver: bridge
