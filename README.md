@@ -3,6 +3,7 @@
 you can simply run this project using the provided docker compose:
 
 ```bash
+mkdir postgres/data/ store/files/
 docker compose up --build
 ```
 
