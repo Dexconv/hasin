@@ -3,7 +3,12 @@
 you can simply run this project using the provided docker compose:
 
 ```bash
+cd hasin
+```
+```bash
 mkdir postgres/data/ store/files/
+```
+```bash
 docker compose up --build
 ```
 
@@ -11,7 +16,7 @@ this will set up the database and run both services. then you can proceed with u
 
 1. from hasin collection, in the retrieve folder use the register, or login endpoint to recieve the jwt token, edit the json body as needed.
 1. save the new toke to the value of "jwtToken" variable, in the collection variables tab.
-1. navigate to the "upload file" endpoint in the retrieve folder, edit the form data as neede, enter tags seprated with "," and select a file smaller than the 1MB limit, upload how many files you want.
+1. navigate to the "upload file" endpoint in the retrieve folder, edit the form data as neede, enter tags seprated with "," and add a row with type file and key of "file", select a file smaller than the 1MB limit, upload how many files you want.
 1. navigate to the "download file" endpoint in the retrieve folder, edit the form data as neede, choose selection mode from "name" and "tags", and enter the tags field value accordingly (single name, single tag, multiple tags).
 
 you will recieve a zip file, containing all the files matching the query. here's how the files are chosen:
